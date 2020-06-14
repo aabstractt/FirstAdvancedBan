@@ -2,7 +2,7 @@ package org.advancedban.utils;
 
 public class TargetOffline {
 
-    private String name;
+    private final String name;
 
     private String address;
 
@@ -35,5 +35,13 @@ public class TargetOffline {
      */
     public String getLastAddress() {
         return lastAddress;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setLastAddress(String address) {
+        lastAddress = address;
     }
 }
