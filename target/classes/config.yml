@@ -1,0 +1,8 @@
+provider: "mysql"
+
+mysql:
+  username: "root"
+  host: "localhost"
+  port: "3306"
+  password: "xavier123"
+  dbname: "AdvancedBan"

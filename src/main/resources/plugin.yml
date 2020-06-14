@@ -1,0 +1,9 @@
+name: AdvancedBan
+
+version: 1.0.0
+
+main: org.advancedban.AdvancedBan
+
+author: iTheTrollIdk
+
+api: ["1.0.8"]
