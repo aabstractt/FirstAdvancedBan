@@ -1,5 +1,9 @@
 package org.advancedban.provider;
 
+import org.advancedban.extension.BanEntry;
+import org.advancedban.extension.DeleteEntry;
+import org.advancedban.extension.Entry;
+import org.advancedban.extension.MuteEntry;
 import org.advancedban.utils.TargetOffline;
 
 import java.sql.*;
@@ -101,6 +105,85 @@ public class MysqlProvider implements Provider {
         } catch(SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override
+    public void addEntry(Entry entry) {
+        try {
+            if(isClosed()) connectAndCreateDatabase(data, false);
+
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + entry.getTableName() + " (username, createdAt, finishAt, author, reason) VALUES (?, ?, ?, ?, ?)");
+
+            preparedStatement.setString(1, entry.getName());
+
+            preparedStatement.setString(2, entry.getCreatedAt());
+
+            preparedStatement.setString(3, entry.getFinishAt());
+
+            preparedStatement.setString(4, entry.getAuthor());
+
+            preparedStatement.setString(5, entry.getReason());
+
+            preparedStatement.execute();
+
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    public BanEntry getBanActiveByUsername(String name) {
+        return null;
+    }
+
+    @Override
+    public MuteEntry getMuteActiveByUsername(String name) {
+        return null;
+    }
+
+    @Override
+    public BanEntry[] getAllBanByUsername(String name) {
+        return new BanEntry[0];
+    }
+
+    @Override
+    public BanEntry[] getAllBanActive() {
+        return new BanEntry[0];
+    }
+
+    @Override
+    public MuteEntry[] getAllMuteByUsername(String name) {
+        return new MuteEntry[0];
+    }
+
+    @Override
+    public MuteEntry[] getAllMuteActive() {
+        return new MuteEntry[0];
+    }
+
+    @Override
+    public DeleteEntry[] getAllDeleteByUsername(String name) {
+        return new DeleteEntry[0];
+    }
+
+    @Override
+    public Entry[] getAllActiveByUsername(String name) {
+        return new Entry[0];
+    }
+
+    @Override
+    public Entry[] getAllActive() {
+        return new Entry[0];
+    }
+
+    @Override
+    public void deleteEntry(Entry entry) {
+
+    }
+
+    @Override
+    public void updateEntry(Entry entry) {
+
     }
 
     /**
