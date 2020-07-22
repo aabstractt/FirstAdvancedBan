@@ -1,6 +1,7 @@
 package org.advancedban;
 
 import cn.nukkit.plugin.PluginBase;
+import org.advancedban.commands.TempbanCommand;
 import org.advancedban.provider.Provider;
 import org.advancedban.utils.Utils;
 
@@ -24,6 +25,8 @@ public class AdvancedBan extends PluginBase {
         getLogger().info("Starting AdvancedBan modules...");
 
         saveConfig();
+
+        new TempbanCommand();
 
         try {
             provider = Utils.loadProvider();

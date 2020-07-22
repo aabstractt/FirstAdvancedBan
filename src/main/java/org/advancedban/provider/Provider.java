@@ -1,42 +1,35 @@
 package org.advancedban.provider;
 
 import org.advancedban.extension.BanEntry;
-import org.advancedban.extension.DeleteEntry;
-import org.advancedban.extension.Entry;
-import org.advancedban.extension.MuteEntry;
 import org.advancedban.utils.TargetOffline;
 
-import java.sql.SQLException;
+import java.util.List;
 
 public interface Provider {
 
     String getName();
 
-    TargetOffline getTargetOffline(String username) throws SQLException;
+    TargetOffline getTargetOffline(String username);
 
     void setTargetOffline(TargetOffline targetOffline);
 
-    void addEntry(Entry entry);
+    void addBan(BanEntry entry);
 
-    BanEntry getBanActiveByUsername(String name);
+    BanEntry getActiveById(Integer id);
 
-    MuteEntry getMuteActiveByUsername(String name);
+    BanEntry getBanActiveByUsername(String username);
 
-    BanEntry[] getAllBanByUsername(String name);
+    BanEntry getBanActiveByUsername(String username, boolean permanent);
 
-    BanEntry[] getAllBanActive();
+    BanEntry getMuteActiveByUsername(String username);
 
-    MuteEntry[] getAllMuteByUsername(String name);
+    BanEntry getMuteActiveByUsername(String username, boolean permanent);
 
-    MuteEntry[] getAllMuteActive();
+    List<BanEntry> getAllDeleteByUsername(String username);
 
-    DeleteEntry[] getAllDeleteByUsername(String name);
+    List<BanEntry> getAllActiveByUsername(String username);
 
-    Entry[] getAllActiveByUsername(String name);
+    void deleteEntry(BanEntry entry);
 
-    Entry[] getAllActive();
-
-    void deleteEntry(Entry entry);
-
-    void updateEntry(Entry entry);
+    void updateEntry(BanEntry entry);
 }
